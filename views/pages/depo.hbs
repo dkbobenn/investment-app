@@ -1,0 +1,21 @@
+  <h1>New Stock</h1>
+
+<form action="/stock-search" method="GET">
+  <label>
+    <input type="text" name="stocks">
+  </label>
+  <button type="submit">Search for Stocks</button>
+</form>
+
+<div>
+
+<ul>
+  {{#each stockData}}
+    <li>{{key}}{{this}}</li>
+  {{/each}}
+</ul>
+<hr />
+
+</div>
+
+<a href="/"><button>Back to home</button></a>
