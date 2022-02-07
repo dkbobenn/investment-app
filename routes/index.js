@@ -27,8 +27,11 @@ const apiUrl = `https://www.alphavantage.co/query?function=${functionName}&symbo
 
       const axiosOutputData = response.data
 
+      //let obj = JSON.parse(JSON.parse(axiosOutputData))
+      //console.log(obj)
+
       const stockData = axiosOutputData ['Time Series (Daily)']['2022-02-04']
-      console.log('Response from API is: ', stockData);
+      //console.log('Response from API is: ', stockData);
 
       res.render("pages/depo.hbs", { stockData })
 
