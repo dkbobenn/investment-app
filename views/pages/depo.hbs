@@ -9,13 +9,15 @@
 
 <div>
 
+<div>
+ <h2>{{symbolName}}</h2>
 <ul>
   {{#each stockData}}
-    <li>{{key}}{{this}}</li>
+    <li>{{this}}</li>
   {{/each}}
 </ul>
-<hr />
-
 </div>
+
+<hr />
 
 <a href="/"><button>Back to home</button></a>
