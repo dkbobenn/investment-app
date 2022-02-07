@@ -9,9 +9,9 @@ a {
   font-size: 1.5em;
 }
  
-form {
+/* form {
   margin: 30px auto;
-  width: 380px;
+  width: 300px;
 }
  
 form label {
@@ -51,7 +51,7 @@ form button:hover {
   background: #fff;
   color: #43a3e6;
   transition: 0.3s ease background;
-}
+} */
  
 .error {
   background: #f02b63;

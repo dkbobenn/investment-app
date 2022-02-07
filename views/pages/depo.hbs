@@ -1,21 +1,59 @@
-  <h1>New Stock</h1>
-
-<form action="/stock-search" method="GET">
+<h1>New Stock</h1>
+{{!-- <form action="/stock-search" method="GET">
   <label>
     <input type="text" name="stocks">
   </label>
   <button type="submit">Search for Stocks</button>
+</form> --}}
+
+<form class="form-inline" action="/stock-search" method="GET">
+  <div class="form-group mx-sm-3 mb-2">
+    <label>
+      <input type="text" name="stocks">
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Search for Stocks</button>
 </form>
 
-<div>
+<form class="form-inline" action="/stock-buy" method="POST">
+  <div class="form-group mx-sm-3 mb-2">
+  <label>
+    <input type="number" name="buy">
+  </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Buy</button>
+</form>
 
-<ul>
-  {{#each stockData}}
-    <li>{{key}}{{this}}</li>
-  {{/each}}
-</ul>
-<hr />
+<form class="form-inline" action="/stock-sell" method="POST">
+  <div class="form-group mx-sm-3 mb-2">
+  <label>
+    <input type="number" name="sell">
+  </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Sell</button>
+</form>
 
+<div>  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Buying Price</th>
+        <th scope="col">Current stock value</th>
+        <th scope="col">Highest day value</th>
+        <th scope="col">Lowest day value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{symbolName}}</th>
+        {{#each stockData}}
+          <td>{{this}}</td>
+        {{/each}}
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<a href="/"><button>Back to home</button></a>
+

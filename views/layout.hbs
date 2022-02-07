@@ -7,23 +7,23 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{title}}</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
    </head>
 
    <body>
-           <nav>
+    <nav>
       <ul>
         <li id="to-left">
-          <p><a href="/"> Users - demo </a></p>
+          <p><a href="/"> Home </a></p>
         </li>
-           <li id="to-right">
-  <a href="/signup">Signup</a> <span> | </span>
-  <a href="/login">Login</a> <span> | </span>
-  <form id="logout-form" action="/logout" method="POST">
-      <button>Logout</button> <span> | </span>
-  </form>
-    <a href="/userProfile">Profile</a>   {{!-- !!! --}}
-</li>
-        
+        <li id="to-right">
+          <a href="/signup">Signup</a> <span> | </span>
+          <a href="/login">Login</a> <span> | </span>
+          <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button> <span> | </span>
+          </form>
+          <a href="/userProfile">Profile</a>   {{!-- !!! --}}
+        </li>
       </ul>
     </nav>
 
