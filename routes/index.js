@@ -56,12 +56,8 @@ router.get("/depo", (req, res, next) => {
   
   axios
     .get(apiUrl)
-    .then((response) => {
-      const axiosOutputData = response.data;
-
-      let stockDates = Object.keys(axiosOutputData["Time Series (Daily)"]);
-      //console.log(stockDates);
-      console.log(stockDates[0]);
+    .then(response => {
+      const axiosOutputData = response.data
 
       const stockData = axiosOutputData["Time Series (Daily)"][stockDates[0]];
       console.log(stockData);
