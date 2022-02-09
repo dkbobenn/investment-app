@@ -17,6 +17,7 @@
     <thead>
       <tr>
         <th scope="col">Sell</th>
+        <th scope="col">Sell partly</th>
         <th id="stockName" scope="col">Name</th>
         <th scope="col">Number</th>
         <th scope="col">Buying Price</th>
@@ -29,8 +30,16 @@
       {{#each stocks}}
         <tr>
             <td><form action="/stock-sell/{{_id}}/delete" method="POST">
-                <button>Sell</button>
+                <button>Sell all</button>
             </form></td>
+
+            <td><form action="/stock-update/{{_id}}/edit" method="POST">
+              <label>
+                <input type="number" name="update" placeholder="Number to sell">
+              </label>
+                <button>Sell part</button>
+            </form></td>
+
             <td scope="row">{{stockName}}</td>
             <td scope="row">{{stockNumber}}</td>
             <td scope="row">{{buyingPrice}}</td>

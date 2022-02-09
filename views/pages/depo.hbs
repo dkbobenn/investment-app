@@ -11,7 +11,7 @@
 <form class="form-inline" action="/stock-search" method="GET">
   <div class="form-group mx-sm-3 mb-2">
     <select name="stocks">
-      {{#each tickerData}}
+      {{#each stockInfo}}
       {{!-- {{#each nameData}} --}}
         <option value="{{this}}" name="stocks">{{this}}</option>
       {{!-- {{/each}} --}}

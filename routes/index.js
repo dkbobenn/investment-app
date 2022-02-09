@@ -41,12 +41,9 @@ router.get("/depo", (req, res, next) => {
           nameData.push(data[key].name);
         }
 
-//        const stockInfo = [...tickerData, ...nameData];
-       // console.log(stockInfo);
-        //console.log(nameData)
-  
-        res.render("pages/depo.hbs", { tickerData, nameData })
-  
+        var stockInfo = tickerData.map((e, i) => e + ": " + nameData[i]);
+        console.log(stockInfo);
+        res.render("pages/depo.hbs", { stockInfo })
       })
       .catch(err => {
         console.log(err);
@@ -57,7 +54,10 @@ router.get("/depo", (req, res, next) => {
 
  //Searching Stock By Symbol - Alpha API:  
  router.get("/stock-search", (req, res, next) => {
-  let symbolName = req.query.stocks;
+  
+  let symbolName = req.query.stocks.split(":")[0];
+  let stockInfo = req.query.stocks;
+  //console.log(symbolName)
 
   const apiUrl = `https://www.alphavantage.co/query?function=${functionName}&symbol=${symbolName}&apikey=${key}`;
 //  console.log("object :>> ", apiUrl);
@@ -76,7 +76,7 @@ router.get("/depo", (req, res, next) => {
       let stockLow = Object.values(stockData['3. low']);
       let stockLowValue = stockLow.join().replaceAll(",","");
 
-      res.render("pages/depo.hbs", { symbolName, stockOpenValue, stockHighValue, stockLowValue });
+      res.render("pages/depo.hbs", { symbolName, stockInfo, stockOpenValue, stockHighValue, stockLowValue });
     })
     .catch((err) => {
       console.log(err);

@@ -9,16 +9,12 @@ const mongoose = require("mongoose");
    
      Stock.create({ stockNumber, buyingPrice, stockName })
      .then(() => res.redirect('/stock-overview'))
-     //.then(() => console.log("test"));
-    // //.catch(error => next(error));
-    // .catch(error => res.render('pages/depo.hbs'));
   });
 
   //READ - read from DB
   router.get('/stock-overview', (req, res, next) => {
     Stock.find()
       .then((allTheStocksFromDB) => {
-        //console.log("Retrieved stocks from DB:", allTheStocksFromDB);
         res.render("pages/stockoverview.hbs", { stocks: allTheStocksFromDB });
       })
       .catch((error) => {
@@ -27,7 +23,25 @@ const mongoose = require("mongoose");
       });
   });
 
-  //UPDATE
+  //UPDATE - sell partly
+  router.post('/stock-update/:id/edit', (req, res, next) => {
+    
+    const { id } = req.params;
+    let sellStock = parseInt(req.body.update);
+  
+    Stock.findById(id)
+      .then((stockInfo) =>{
+      stockNumber = stockInfo.stockNumber - sellStock;
+      
+      Stock.findByIdAndUpdate(id, { stockNumber }, { new: true })
+        .then(() => {
+          console.log(Object.values(stockInfo));
+          res.redirect('/stock-overview')
+        })
+        .catch(error => next(error));
+    })
+    .catch((err) => next(err));
+  });
 
   //DELETE
   router.post('/stock-sell/:id/delete', (req, res, next) => {
@@ -37,10 +51,5 @@ const mongoose = require("mongoose");
       .then(() => res.redirect('/stock-overview'))
       .catch(error => next(error));
   });
-
-
-  
-
-
 
   module.exports = router;
