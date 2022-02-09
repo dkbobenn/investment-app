@@ -1,0 +1,41 @@
+<h2>Stock Overview</h2>
+
+{{!-- <form class="form-inline" action="/stock-sell" method="POST">
+  <div class="form-group mx-sm-3 mb-2">
+  <label>
+    <input type="number" name="sell" placeholder="Number to sell">
+  </label>
+  <label>
+    <input type="number" name="sell" value={{_id}}>
+  </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Sell</button>
+</form> --}}
+
+<div>  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sell</th>
+        <th id="stockName" scope="col">Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Buying Price</th>
+        {{!-- <th scope="col">Current stock value</th>
+        <th scope="col">Highest day value</th>
+        <th scope="col">Lowest day value</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each stocks}}
+        <tr>
+            <td><form action="/stock-sell/{{_id}}/delete" method="POST">
+                <button>Sell</button>
+            </form></td>
+            <td scope="row">{{stockName}}</td>
+            <td scope="row">{{stockNumber}}</td>
+            <td scope="row">{{buyingPrice}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

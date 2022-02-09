@@ -1,45 +1,44 @@
-<h1>New Stock</h1>
-{{!-- <form action="/stock-search" method="GET">
-  <label>
-    <input type="text" name="stocks">
-  </label>
-  <button type="submit">Search for Stocks</button>
-</form> --}}
+<h2>New Stock</h2>
+<form class="form-inline" action="/stock-search-name" method="GET">
+  <div class="form-group mx-sm-3 mb-2">
+    <label>
+      <input type="text" name="stocks" placeholder='Company Name'>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Search for Stock by Name</button>
+</form>
 
 <form class="form-inline" action="/stock-search" method="GET">
   <div class="form-group mx-sm-3 mb-2">
-    <label>
-      <input type="text" name="stocks">
-    </label>
+    <select name="stocks">
+      {{#each tickerData}}
+      {{!-- {{#each nameData}} --}}
+        <option value="{{this}}" name="stocks">{{this}}</option>
+      {{!-- {{/each}} --}}
+      {{/each}}
+    </select>  
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Search for Stocks</button>
+  <button type="submit" class="btn btn-primary mb-2">Choose Stock</button>
 </form>
 
 <form class="form-inline" action="/stock-buy" method="POST">
   <div class="form-group mx-sm-3 mb-2">
-  <label>
-    <input type="number" name="buy">
-  </label>
+    <label>
+      <input type="number" name="stockNumber" placeholder='Choose number to buy'>
+      <input type="hidden" name="stockName" value={{symbolName}} >
+      <input type="hidden" name="buyingPrice" value={{stockOpenValue}} >
+    </label>
   </div>
   <button type="submit" class="btn btn-primary mb-2">Buy</button>
-</form>
-
-<form class="form-inline" action="/stock-sell" method="POST">
-  <div class="form-group mx-sm-3 mb-2">
-  <label>
-    <input type="number" name="sell">
-  </label>
-  </div>
-  <button type="submit" class="btn btn-primary mb-2">Sell</button>
 </form>
 
 <div>  
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Number</th>
-        <th scope="col">Buying Price</th>
+        <th id="stockName" scope="col">Name</th>
+        {{!-- <th scope="col">Number</th>
+        <th scope="col">Buying Price</th> --}}
         <th scope="col">Current stock value</th>
         <th scope="col">Highest day value</th>
         <th scope="col">Lowest day value</th>
@@ -48,9 +47,11 @@
     <tbody>
       <tr>
         <th scope="row">{{symbolName}}</th>
-        {{#each stockData}}
-          <td>{{this}}</td>
-        {{/each}}
+        {{!-- <th scope="row"></th>
+        <th scope="row"></th> --}}
+        <th scope="row">{{stockOpenValue}}</th>
+        <th scope="row">{{stockHighValue}}</th>
+        <th scope="row">{{stockLowValue}}</th>
       </tr>
     </tbody>
   </table>
