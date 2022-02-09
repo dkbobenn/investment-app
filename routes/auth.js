@@ -21,7 +21,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  console.log('The form data: ', req.body);
+  //console.log('The form data: ', req.body);
   
   const { username, password } = req.body;
 
@@ -40,20 +40,18 @@ router.post("/signup", isLoggedOut, (req, res) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
   if (!regex.test(password)) {
-    return res.status(400).render("signup", {
+    return res.status(400).render("auth/signup", {
       errorMessage:
         "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });
   }
-
-
   // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
     // If the user is found, send the message username is taken
     if (found) {
       return res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+        .render("auth/signup", { errorMessage: "Username already taken." });
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -71,7 +69,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        console.log('New created user is', user)
+        //console.log('New created user is', user)
         res.redirect("/depo");
       })
       .catch((error) => {
@@ -94,6 +92,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
    });
  });
 
+
+ 
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
@@ -126,7 +126,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       //If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
+      bcrypt.compare(password, user.passwordHash).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
             .status(400)
@@ -145,15 +145,24 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res
-        .status(500)
-        .render("auth/logout", { errorMessage: err.message });
-    }
-    res.redirect("/");
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
   });
 });
+
+// router.get("/logout", isLoggedIn, (req, res) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       return res
+//         .status(500)
+//         .render("auth/logout", { errorMessage: err.message });
+//     }
+//     res.redirect("/");
+//   });
+// });
+
+
 
 module.exports = router;
