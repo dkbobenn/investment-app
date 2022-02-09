@@ -28,41 +28,55 @@ router.get("/depo", (req, res, next) => {
       .get(apiUrl)
       .then(response => {
         //console.log(apiUrl)
-    
-      const data = response.data.results;
-      //console.log(`This is Stock Names ${data}`);
+        
+        const data = response.data.results;
+        // let stockValue = Object.keys(response.data.results[0])
+        // console.log(`test: ${stockValue}`);
+        //console.log(`This is Stock Names ${data}`);
 
-      const stockNames = data.filter(obj => {
-        console.log(obj.ticker, obj.name)
-      })
-      
-     res.render("pages/depo.hbs", { stockNames })
+        let tickerData=[];
+        let nameData=[];
+        for(let key in data) {
+          tickerData.push(data[key].ticker);
+          nameData.push(data[key].name);
+        }
+
+//        const stockInfo = [...tickerData, ...nameData];
+       // console.log(stockInfo);
+        //console.log(nameData)
+  
+        res.render("pages/depo.hbs", { tickerData, nameData })
   
       })
-  .catch(err => {
-  console.log(err);
-  err.response.status === 404 ? alert(`The stock ${compName} doesn't exist.`) : alert('Server error! Sorry.');
-    });
+      .catch(err => {
+        console.log(err);
+        err.response.status === 404 ? alert(`The stock ${compName} doesn't exist.`) : alert('Server error! Sorry.');
+      });
   });
 
 
  //Searching Stock By Symbol - Alpha API:  
  router.get("/stock-search", (req, res, next) => {
-  const symbolName = req.query.stocks;
-  console.log(`userinput ${symbolName}`);
+  let symbolName = req.query.stocks;
 
   const apiUrl = `https://www.alphavantage.co/query?function=${functionName}&symbol=${symbolName}&apikey=${key}`;
-  //console.log("object :>> ", apiUrl);
+//  console.log("object :>> ", apiUrl);
   
   axios
     .get(apiUrl)
     .then(response => {
       const axiosOutputData = response.data
-
+      let stockDates = Object.keys(axiosOutputData["Time Series (Daily)"]);
       const stockData = axiosOutputData["Time Series (Daily)"][stockDates[0]];
-      console.log(stockData);
+      //console.log(stockData);
+      let stockOpen = Object.values(stockData['1. open']);
+      let stockOpenValue = stockOpen.join().replaceAll(",","");
+      let stockHigh = Object.values(stockData['2. high']);
+      let stockHighValue = stockHigh.join().replaceAll(",","");
+      let stockLow = Object.values(stockData['3. low']);
+      let stockLowValue = stockLow.join().replaceAll(",","");
 
-      res.render("pages/depo.hbs", { stockData, symbolName });
+      res.render("pages/depo.hbs", { symbolName, stockOpenValue, stockHighValue, stockLowValue });
     })
     .catch((err) => {
       console.log(err);
