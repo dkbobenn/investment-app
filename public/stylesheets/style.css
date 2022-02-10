@@ -86,7 +86,6 @@ margin: 10px;
      }
  
 
-
  
 /* form {
   margin: 30px auto;
@@ -282,4 +281,13 @@ form button {
 #login-form p {
   color: #003300;
   font-size: 20px;;
+}
+
+td, tr {
+  padding: 5px;
+  text-align:center;      
+}
+
+.sellPart{
+width: 100px;
 }

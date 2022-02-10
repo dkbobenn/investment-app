@@ -1,6 +1,5 @@
 <h2>Stock Overview</h2>
 
-<div>  
   <table class="table table-striped">
     <thead>
       <tr>
@@ -23,19 +22,17 @@
               <label>
                 <input type="number" name="update" placeholder="Number to sell" min="1">
               </label>
-                <button>Sell part</button>
+                <button class="sellPart">Sell part</button>
             </form></td>
 
             <td scope="row">{{stockName}}</td>
             <td scope="row">{{stockNumber}}</td>
             <td scope="row">{{buyingPrice}}</td>
-            <td scope="row">{{stockOpenValue}}</td>
             <td scope="row">{{stockValue}}</td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-</div>
 
 {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
