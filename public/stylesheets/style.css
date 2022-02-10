@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background: #2f2f2f;
 }
  
 a {
@@ -13,6 +14,7 @@ position: relative;
 text-align: center;
 position: 0 0;
 size: cover;
+
 }
 
 #frontpage-image {
@@ -31,7 +33,60 @@ margin-left: 500px;
 font-size: 50px;
 line-height: 80px;
 }
+
+
+#depo {
+text-align: center;
+display: flex;
+flex-direction: column;
+width: 100%;
+  }
+#depo h1 {
+  color: #444538;
+  font-size: 45px;;
+}
+
+  #depo p {
+color: #003300;
+font-size: 20px;
+      }
+
+  #depo form {
+margin: 10px;
+}
+
+ #depo button{
+ width: 400px; 
+ background-color: #43a3e6;
+  font-size: 20px;
+  color: white;
+  border: solid;
+  border-color: #444538;
+  border-style: outset;
+  border-width: 1mm;
+ }
+
+ #depo input{
+  width: 400px; 
+   font-size: 20px; 
+  }
+  
+  #depo select{
+  width: 400px; 
+  font-size: 20px;
+  margin-bottom: 8px;
+    }
+
+  #depo-table {
+ text-align: center;
+  }
+
+  #depo-table tr {
+  margin-right: 200px;
+     }
  
+
+
  
 /* form {
   margin: 30px auto;
@@ -122,6 +177,7 @@ ul li {
   color: #000;
   font-weight: bold;
   font-size: 2em;
+ 
 }
 
 #logout-form {
@@ -129,12 +185,13 @@ ul li {
 }
  
 #logout-form button {
-  width: 120px;
-  background-color: #43a3e6;
-  font-size: 20px;
-  color: white;
-  height: 40px;
+  width: 100px;
+  color:#007bff;
+  height: 30px;
   font-size: 16px;
+  background-color: transparent;
+  border-style: none;
+  font-size: 1.5em;
 }
 
 #signup-form {
@@ -175,7 +232,7 @@ form button {
 }
 #signup-form h2 {
   color: #444538;
-  font-size: 45px;;
+  font-size: 45px;
 }
 #signup-form p {
   color: #003300;
