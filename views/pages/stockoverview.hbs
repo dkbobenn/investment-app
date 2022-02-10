@@ -9,13 +9,11 @@
         <th id="stockName" scope="col">Name</th>
         <th scope="col">Number of stocks</th>
         <th scope="col">Buying Price</th>
-        {{!-- <th scope="col">Current stock value</th>
-        <th scope="col">Highest day value</th>
-        <th scope="col">Lowest day value</th> --}}
+        <th scope="col">Current Price</th>
       </tr>
     </thead>
     <tbody>
-      {{#each stocks}}
+      {{#each stockInfoOutput}}
         <tr>
             <td><form action="/stock-sell/{{_id}}/delete" method="POST">
                 <button>Sell all</button>
@@ -31,8 +29,8 @@
             <td scope="row">{{stockName}}</td>
             <td scope="row">{{stockNumber}}</td>
             <td scope="row">{{buyingPrice}}</td>
-            {{!-- <td scope="row">{{stockOpenValue}}</td> --}}
-
+            <td scope="row">{{stockOpenValue}}</td>
+            <td scope="row">{{stockValue}}</td>
         </tr>
       {{/each}}
     </tbody>

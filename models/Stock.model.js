@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const stockSchema = new Schema(
   {
-    stockName: String,
+    stockName: {type: String, unique:true},
     stockNumber: {type: Number, min: 1},
     buyingPrice : Number,
     currentStockValue: Number,
