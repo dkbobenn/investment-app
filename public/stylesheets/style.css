@@ -8,6 +8,30 @@ a {
   text-decoration: none;
   font-size: 1.5em;
 }
+.container {
+position: relative;
+text-align: center;
+position: 0 0;
+size: cover;
+}
+
+#frontpage-image {
+width: 100%;
+height:880px;
+}
+
+#frontpage-header {
+text-align: center;
+text-transform: uppercase;
+color: white;
+text-shadow: #020819 8px -20px 9px;
+position: absolute;
+margin-top: 40px;
+margin-left: 500px;
+font-size: 50px;
+line-height: 80px;
+}
+ 
  
 /* form {
   margin: 30px auto;
@@ -59,13 +83,14 @@ form button:hover {
   color: #fff;
   margin: 20px auto;
   padding: 20px;
-  width: 100%;
+  width: 50%;
+  text-align: center;
 }
  
 ul {
   border-bottom: 2px solid #43a3e6;
-  height: 30px;
-  padding: 1em 0;
+  height: 50px;
+  padding: 1em, 1em;
   list-style-type: none;
 }
  
@@ -74,8 +99,8 @@ ul li {
 }
  
 #to-right {
-  padding: 1em;
   float: right;
+  margin-top: 11px;
 }
  
 #to-right span {
@@ -90,6 +115,7 @@ ul li {
  
 #to-left {
   float: left;
+  margin-top: 15px;
 }
  
 #to-left p a {
@@ -97,11 +123,106 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
- 
+
 #logout-form {
   display: inline;
 }
  
 #logout-form button {
   width: 120px;
+  background-color: #43a3e6;
+  font-size: 20px;
+  color: white;
+  height: 40px;
+  font-size: 16px;
+}
+
+#signup-form {
+  margin: 30px auto;
+  width: 400px;
+}
+ 
+#signup-form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+#signup-form input,
+form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+ 
+#signup-form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%;
+}
+#signup-form h2 {
+  color: #444538;
+  font-size: 45px;;
+}
+#signup-form p {
+  color: #003300;
+  font-size: 20px;;
+}
+
+#login-form {
+  margin: 30px auto;
+  width: 400px;
+}
+ 
+#login-form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+#login-form input,
+form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+ 
+#login-form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease background;
+  width: 100%;
+}
+#login-form h2 {
+  color: #444538;
+  font-size: 45px;;
+}
+#login-form p {
+  color: #003300;
+  font-size: 20px;;
 }

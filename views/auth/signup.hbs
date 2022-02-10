@@ -1,20 +1,25 @@
-<div id="form">
+<div id="signup-form">
   <h2>Signup</h2>
+  <p>It`s quick and easy - LETS DO IT :-)</p>
   <form action="/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" />
+    <label> 
+      <input type="text" name="username" placeholder='Username' />
     </label>
-    <label> Password
-      <input type="password" name="password"/>
+    <label> 
+      <input type="password" name="password" placeholder='Password'/>
     </label>
 
     <button type="submit">Create account</button>
 
-    {{!-- error message will be added here --}}
   </form>
+  
 </div>
-
-  {{#if errorMessage}}
+<div>
+ {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
+
+</div>
+
+ 

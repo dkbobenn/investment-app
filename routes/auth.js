@@ -15,11 +15,13 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+
+// GET - Signup route
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-
+// POST - Signup route
 router.post("/signup", isLoggedOut, (req, res) => {
   //console.log('The form data: ', req.body);
   
@@ -36,7 +38,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  //   ! This use case is using a regular expression to control for special characters and min length
+  // Control for special characters and min length in password
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
   if (!regex.test(password)) {
@@ -59,7 +61,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .genSalt(saltRounds)
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
-        console.log(`Password hash: ${hashedPassword}`);
+      
         // Create a user and save it in the database
         return User.create({
           username,
@@ -69,7 +71,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        //console.log('New created user is', user)
+       
         res.redirect("/depo");
       })
       .catch((error) => {
@@ -107,8 +109,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       .render("auth/login", { errorMessage: "Please provide your username." });
   }
 
-  // Here we use the same logic as above
-  // - either length based parameters or we check the strength of a password
+  // Check the strength of the password
   if (password.length < 8) {
     return res.status(400).render("auth/login", {
       errorMessage: "Your password needs to be at least 8 characters long.",
@@ -125,7 +126,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           .render("auth/login", { errorMessage: "Wrong credentials." });
       }
 
-      //If user is found based on the username, check if the in putted password matches the one saved in the database
+      // If user is found based on the username, check if the in putted password matches the one saved in the database
       bcrypt.compare(password, user.passwordHash).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
@@ -133,7 +134,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             .render("auth/login", { errorMessage: "Wrong credentials." });
         }
         req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        // req.session.user = user._id - Saving the entire user object
         return res.redirect("/depo");
       });
     })
@@ -145,23 +146,17 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-router.post('/logout', (req, res, next) => {
-  req.session.destroy(err => {
-    if (err) next(err);
-    res.redirect('/');
+// POST route for Logout
+router.post("/logout", isLoggedIn, (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res
+        .status(500)
+        .render("auth/logout", { errorMessage: err.message });
+    }
+    res.redirect("/");
   });
 });
-
-// router.get("/logout", isLoggedIn, (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       return res
-//         .status(500)
-//         .render("auth/logout", { errorMessage: err.message });
-//     }
-//     res.redirect("/");
-//   });
-// });
 
 
 

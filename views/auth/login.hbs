@@ -1,20 +1,23 @@
-div id="form">
-  <h2>Login</h2>
 
+<div id='login-form'>
+  <h2>Login</h2>
+  <p>Perfect day for checking your stocks :-)</p>
   <form action="/login" method="POST">
 
     <label> Username
       <input type="text" name="username"/>
     </label>
-
     <label>Password
       <input type="password" name="password"/>
     </label>
 
     <button type="submit">Login</button>
+   
+  </form>
+</div>
 
-    {{#if errorMessage}}
+<div>
+   {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-  </form>
 </div>
