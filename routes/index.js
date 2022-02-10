@@ -4,7 +4,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-res.render("index");
+res.render("index.hbs");
 });
 
 router.get("/depo", isLoggedIn, (req, res, next) => {
