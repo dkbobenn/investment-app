@@ -11,19 +11,19 @@
    </head>
 
    <body>
-    <nav>
+    <nav id='nav-bar'>
       <ul>
         <li id="to-left">
           <p ><a href="/"> Home </a></p>
         </li>
         <li id="to-right">
-          <a href="/signup">Signup</a> <span> | </span>
-          <a href="/login">Login</a> <span> | </span>
+          <a id='signup-a' href="/signup">Signup</a>
+          <a id='login-a' href="/login">Login</a> 
+          <a id='buy-stock-a'href="/depo">Buy Stock</a>
+          <a id='stock-overview-a' href="/stock-overview">Stock Overview</a> 
           <form id="logout-form" action="/logout" method="POST">
-            <button>Logout</button> <span> | </span>
+            <button>Logout</button>
           </form>
-          <a href="/depo">Buy Stock</a><span> | </span>
-          <a href="/stock-overview">Stock Overview</a> 
         </li>
       </ul>
     </nav>
