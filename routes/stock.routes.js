@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 const axios = require('axios');
-const { redirect } = require("express/lib/response");
+//const { redirect } = require("express/lib/response");
 const keyPoly = 'fwL5228gSe7rxwQZLSKbd_r4Jo5YK_Zk'; //Key for Polygon Ticker stock API
 const key = 'GXNI0400YMK2FWZM'; // Key for Alpha API
 const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API
@@ -75,10 +75,9 @@ const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API
       //try to sell more than you have
       if (stockNumber<0) {
         Stock.find()
-          .then((allTheStocksFromDB) => {
+          .then((stockInfoOutput) => {
           return res
-          .status(400)
-          .render("pages/stockoverview", { stocks: allTheStocksFromDB, errorMessage: "You are selling more than you have - Try again, only with partly of your amount" });
+          .render("pages/stockoverview.hbs", { stockInfoOutput, errorMessage: "You are selling more than you have - Try again, only with partly of your amount" });
           })
           .catch((error) => {
             console.log("Error while getting the stocks from the DB: ", error);      
