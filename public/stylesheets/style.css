@@ -148,12 +148,9 @@ ul li {
  
 #to-right {
   float: right;
-  margin-top: 11px;
-  margin-right: 20px;
-  width: 800px;
-  
+  margin-top: 15px;
+  margin-right: 10px;
 }
- 
 
 #form h2 {
   display: flex;
@@ -163,6 +160,7 @@ ul li {
 #to-left {
   float: left;
   margin-top: 15px;
+  margin-left: 5px;
 }
  
 #to-left p a {
@@ -293,4 +291,8 @@ td, tr {
 
 .sellPart{
 width: 100px;
+}
+
+.stockHeader{
+  margin-left: 25px;
 }
