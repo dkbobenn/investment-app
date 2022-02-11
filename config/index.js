@@ -61,4 +61,9 @@ module.exports = (app) => {
       }),
     })
   );
+  app.use((req, res, next) => {
+    res.locals.session = req.session;
+    console.log("is is current or user", req.session)
+    next();
+  })
 };

@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 const axios = require('axios');
-//const { redirect } = require("express/lib/response");
 const keyPoly = 'fwL5228gSe7rxwQZLSKbd_r4Jo5YK_Zk'; //Key for Polygon Ticker stock API
 const key = 'GXNI0400YMK2FWZM'; // Key for Alpha API
 const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API

@@ -14,16 +14,20 @@
     <nav id='nav-bar'>
       <ul>
         <li id="to-left">
-          <p ><a href="/"> Home </a></p>
+          <p ><a href="/"> Easy Investor </a></p>
         </li>
         <li id="to-right">
-          <a id='signup-a' href="/signup">Signup</a>
-          <a id='login-a' href="/login">Login</a> 
+          {{#unless session.user}}
+            <a id='signup-a' href="/signup">Signup</a>
+            <a id='login-a' href="/login">Login</a> 
+          {{/unless}}
           <a id='buy-stock-a'href="/depo">Buy Stock</a>
           <a id='stock-overview-a' href="/stock-overview">Stock Overview</a> 
-          <form id="logout-form" action="/logout" method="POST">
-            <button>Logout</button>
-          </form>
+          {{#if session.user}}
+            <form id="logout-form" action="/logout" method="POST">
+              <button>Logout</button>
+            </form>
+          {{/if}}
         </li>
       </ul>
     </nav>
