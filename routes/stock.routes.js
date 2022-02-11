@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 const axios = require('axios');
+const { redirect } = require("express/lib/response");
 const keyPoly = 'fwL5228gSe7rxwQZLSKbd_r4Jo5YK_Zk'; //Key for Polygon Ticker stock API
 const key = 'GXNI0400YMK2FWZM'; // Key for Alpha API
 const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API
@@ -11,8 +12,6 @@ const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API
 //CREATE - Buy a stock
   router.post('/stock-buy', (req, res, next) => {    
     const { stockNumber, buyingPrice, stockName } = req.body;
-    console.log("test")
-    console.log(stockName)
 
     if (!stockName) {
       return res.render("pages/depo.hbs", {
@@ -47,13 +46,16 @@ const functionName = 'TIME_SERIES_DAILY'; // Function for Alpha API
 
           let response = await axios.get(apiUrl);
           const axiosOutputData = response.data;
-          console.log(axiosOutputData);
           let stockDates = Object.keys(axiosOutputData["Time Series (Daily)"]);
           const stockData = axiosOutputData["Time Series (Daily)"][stockDates[0]];
           let stockOpen = Object.values(stockData['1. open']);
-          stockOpenValue.push(stockOpen.join().replaceAll(",",""));
+          let newValue=(stockOpen.join().replaceAll(",",""))*1; //make sure it is a value
+          stockOpenValue.push(newValue);
         }
+        
+        
         var stockInfoOutput = allTheStocksFromDB.map((e, i) => ({...e._doc ,  stockValue :stockOpenValue[i]})); 
+        
         res.render("pages/stockoverview.hbs", { stockInfoOutput });
     }
     catch (error) {
