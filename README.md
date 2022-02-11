@@ -5,10 +5,9 @@ This is an simple and easy app to search out, buy and sell stocks. It alo comes 
 You need to sign up, and here after you can start buying stocks. You can search for stocks to buy, in the Buy Stocks page. You can search for stocks by name input, and the API will return all stocks with a matching name. Here after you select the stock you want to buy, and this action will input the ticker symbol in the next API, so you can make a buy.
 In the page Stock Overview, you can see the stocks you have purchased, and from here you can also sell the stocks again.
 ## Wireframes
-![This is an image]()
+![This is an image](https://github.com/dkbobenn/investment-app/blob/main/public/images/Wireframes_1.png)
 
-![This is an image]()
-
+![This is an image](https://github.com/dkbobenn/investment-app/blob/main/public/images/Wireframes_2.png)
 ## User Stories
 ### API:
 - SEARCH (READ API): As a user I would like to be able to search for any stocks just by writing company name
